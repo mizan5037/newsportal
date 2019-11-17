@@ -11,6 +11,7 @@
 	        <th>Tag</th>
 	        <th>Description</th>
 	        <th>Image</th>
+	        <th>ACTION</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -31,8 +32,27 @@
 		        		@endforeach
 		        	</ul>
 		        </td>
-		        <td>{{$ne->description}}</td>
-		        <td> <img src="{{ asset('images/thumbnail/') }}/{{$ne->image}}" width="50" height="50"> </td>
+		        <td>{!! substr(nl2br($ne->description),0,100) !!}</td>
+				<td> <img src="{{ asset('images/thumbnail/') }}/{{$ne->image}}" width="50" height="50"> </td>
+				<td> <a href="{{ route('admin.news.edit',$ne->id) }}"><span 		class="glyphicon glyphicon-edit"></span></a>
+
+					<form id="delete-form-{{ $ne->id }}" method="post" action="{{ route('admin.news.destroy',$ne->id) }}" style="display: none">
+							{{ csrf_field() }}
+							{{ method_field('DELETE') }}
+						</form>
+
+					<a href="" onclick="
+					if(confirm('Are you sure, You Want to delete this?'))
+					{
+					event.preventDefault();
+					document.getElementById('delete-form-{{ $ne->id }}').submit();
+					}
+					else{
+					event.preventDefault();
+					}" ><span class="glyphicon glyphicon-trash"></span></a>
+					
+				
+				</td>
 		      </tr>
 	       @endforeach
 		 

@@ -8,7 +8,7 @@ class News extends Model
 {
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'categories_news');
+        return $this->belongsToMany(Category::class, 'categoriesnews');
     }
 
     public function tags()
