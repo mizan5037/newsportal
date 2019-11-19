@@ -25,4 +25,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
 Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 'middleware' => ['auth', 'author']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('{category}/{slug}', 'DashboardController@index')->name('dashboard');
+    
 });
