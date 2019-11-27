@@ -23,6 +23,6 @@ class HomeController extends Controller
         //dd($news);
 
         $category = Category::all();
-        return view('front.index')->withCategories($category)->withNews($news);
+        return view('front.pages.home')->withCategories($category)->withNews($news);
     }
 }

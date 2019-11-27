@@ -1,9 +1,7 @@
-@include('front.includes.header')
+@extends('front.index')
+<title>The Potrikar Pata-{{ ucfirst(strtolower(str_replace(' ','_',$singlenews->title))) }}</title>
 
-<!-- ##### Hero Area Start ##### -->
-@include('front.pages.breaking')
-
-<!-- ##### Hero Area End ##### -->
+@section('content')
 <div class="blog-area section-padding-0-80">
     <div class="container">
         <div class="row">
@@ -13,43 +11,16 @@
                     <!-- Single Featured Post -->
                     <div class="single-blog-post featured-post single-post">
                         <div class="post-thumb">
-                            <a href="#"><img src="img/bg-img/25.jpg" alt=""></a>
+                            <a href="news/{!! strtolower($singlenews->category_name)!!}/{{ strtolower(str_replace(' ','_',$singlenews->title)) }}/{{ $singlenews->id }}"><img src="{{ asset('images/thumbnail/') }}/{{$singlenews->image}}" alt=""></a>
                         </div>
                         <div class="post-data">
-                            <a href="#" class="post-catagory">Finance</a>
+                            <a href="#" class="post-catagory">{!! strtoupper($singlenews->category_name)!!}</a>
                             <a href="#" class="post-title">
-                                <h6>Financial news: A new company is born today at the stock market</h6>
+                                <h6>{!! $singlenews->title !!}</h6>
                             </a>
                             <div class="post-meta">
-                                <p class="post-author">By <a href="#">Christinne Williams</a></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio
-                                    sodales placerat. Sed varius leo ac leo fermentum, eu cursus nunc maximus. Integer
-                                    convallis nisi nibh, et ornare neque ullamcorper ac. Nam id congue lectus, a
-                                    venenatis massa. Maecenas justo libero, vulputate vel nunc id, blandit feugiat sem.
-                                </p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque consectetur,
-                                    purus imperdiet volutpat tincidunt, eros sem mollis quam, ut placerat urna neque at
-                                    massa. Proin vitae pulvinar justo. Donec vel placerat enim, at ultricies risus. In
-                                    posuere luctus sem, ac dapibus felis semper quis. Integer ex ante, semper at velit
-                                    nec, ultrices aliquet diam. Donec gravida non metus blandit facilisis. Cras
-                                    tincidunt, lorem aliquam molestie eleifend, libero dui volutpat dui, nec sodales
-                                    massa libero ut metus. Mauris pretium elit ut dapibus consequat. Nam ut lorem nec
-                                    sem dignissim gravida. Duis fringilla, augue eget lacinia tincidunt, neque leo
-                                    maximus sem, sed tristique enim orci id quam.</p>
-                                <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla
-                                    facilisi. Sed pellentesque lectus et accumsan aliquam. Fusce lobortis cursus quam,
-                                    id mattis sapien. Aliquam erat volutpat. Aliquam placerat, est quis sagittis
-                                    tincidunt, ipsum eros posuere mi, ut finibus quam sem eget ex. Interdum et malesuada
-                                    fames ac ante ipsum primis in faucibus. Donec commodo quis enim ac auctor. Ut et
-                                    mollis felis, sit amet ultricies est. Suspendisse sed faucibus tortor.</p>
-                                <a href="#" class="related--post">Related: Facebook announces changes to combat election
-                                    meddling</a>
-                                <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla
-                                    facilisi. Sed pellentesque lectus et accu msan aliquam. Fusce lobortis cursus quam,
-                                    id mattis sapien. Aliquam erat volutpat. Aliquam placerat, est quis sagi ttis
-                                    tincidunt, ipsum eros posuere mi, ut finibus quam sem eget ex. Interdum et malesuada
-                                    fames ac ante ipsum pr imis in faucibus. Donec commodo quis enim ac auctor. Ut et
-                                    mollis felis, sit amet ultricies est. Suspendisse sed faucibus tortor. </p>
+                                <p class="post-author">By <a href="#"></a></p>
+                                <p>{!! nl2br($singlenews->description) !!}</p>
                                 <div class="newspaper-post-like d-flex align-items-center justify-content-between">
                                     <!-- Tags -->
                                     <div class="newspaper-tags d-flex">
@@ -472,38 +443,4 @@
         </div>
     </div>
 
-    <!-- Bottom Footer Area -->
-    <div class="bottom-footer-area">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <!-- Copywrite -->
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- ##### Footer Area Start ##### -->
-
-<!-- ##### All Javascript Files ##### -->
-<!-- jQuery-2.2.4 js -->
-<script src="{{ asset('front/js/jquery/jquery-2.2.4.min.js') }} "></script>
-<!-- Popper js -->
-<script src="{{ asset('front/js/bootstrap/popper.min.js') }} "></script>
-<!-- Bootstrap js -->
-<script src="{{ asset('front/js/bootstrap/bootstrap.min.js') }} "></script>
-<!-- All Plugins js -->
-<script src="{{ asset('front/js/plugins/plugins.js') }} "></script>
-<!-- Active js -->
-<script src="{{ asset('front/js/active.js') }} "></script>
-</body>
-
-</html>
+@endsection
