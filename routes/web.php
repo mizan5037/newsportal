@@ -18,3 +18,4 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
 });
 
 Route::get('news/{category}/{slug}/{id}','singleNewsController@getSingle');
+Route::resource('comments','CommentController');

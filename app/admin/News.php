@@ -15,4 +15,9 @@ class News extends Model
     {
         return $this->belongsToMany(Tag::class, 'tagnews');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 }
