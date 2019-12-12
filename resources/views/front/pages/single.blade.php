@@ -181,23 +181,20 @@
                     </div>
 
                     <div class="post-a-comment-area section-padding-80-0">
-                        <h4>Leave a comment</h4>
+                        <h4>  Comment</h4>
 
                         <!-- Reply Form -->
                         <div class="contact-form-area">
-                            <form action="{{ route('comments.store') }}" method="post">
-                            @csrf
-                                <div class="row">
-                                    
-                                  
+                            <form action="{{ route('comment.add') }}" method="post">
+                             @csrf
+                                <div class="row">                      
                                     <div class="col-12">
-                                        <textarea name="body" class="form-control" id="message" cols="20" rows="10"
-                                            placeholder="Message"></textarea>
-
-                                        <input type="hidden" name="post_id" value="{{ $singlenews->id }}>
+                                        <textarea name="comment_body" class="form-control" id="message" cols="20" rows="10"
+                                           ></textarea>
+                                        <input type="hidden" name="news_id" value="{{ $singlenews->id }}" />
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button class="btn newspaper-btn mt-30 w-100" type="submit">Add Comment</button>
+                                        <button  type="submit">Add Comment</button>
                                     </div>
                                 </div>
                             </form>

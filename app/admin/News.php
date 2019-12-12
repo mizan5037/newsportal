@@ -3,7 +3,7 @@
 namespace App\Admin;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Comment;
 class News extends Model
 {
     public function categories()
@@ -16,8 +16,13 @@ class News extends Model
         return $this->belongsToMany(Tag::class, 'tagnews');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(App\User::class);
+    }
+
     public function comments()
     {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 }

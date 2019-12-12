@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsCommentsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,14 @@ class CreateNewsCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_comments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-
             $table->integer('user_id')->unsigned();
-
-            $table->integer('news_id')->unsigned();
-
-            $table->integer('parent_id')->unsigned()->nullable();
-
+            $table->integer('parent_id')->unsigned();
             $table->text('body');
-
+            $table->integer('commentable_id')->unsigned();
+            $table->string('commentable_type');
             $table->timestamps();
-
         });
     }
 
@@ -36,6 +31,6 @@ class CreateNewsCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_comments');
+        Schema::dropIfExists('comments');
     }
 }
