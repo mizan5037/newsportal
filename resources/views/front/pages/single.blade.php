@@ -1,6 +1,10 @@
 @extends('front.index')
 <title>The Potrikar Pata-{{ ucfirst(strtolower(str_replace(' ','_',$singlenews->title))) }}</title>
-
+<style>
+    .display-comment .display-comment {
+        margin-left: 40px
+    }
+</style>
 @section('content')
 <div class="blog-area section-padding-0-80">
     <div class="container">
@@ -117,84 +121,24 @@
                     </div>
 
                     <!-- Comment Area Start -->
-                    <div class="comment_area clearfix">
-                        <h5 class="title">3 Comments</h5>
-
-                        <ol>
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="img/bg-img/30.jpg" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="post-author">Christian Williams</a>
-                                        <a href="#" class="post-date">April 15, 2018</a>
-                                        <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor.
-                                            Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce
-                                            lobortis cursus quam, id mattis sapien.</p>
-                                    </div>
-                                </div>
-                                <ol class="children">
-                                    <li class="single_comment_area">
-                                        <!-- Comment Content -->
-                                        <div class="comment-content d-flex">
-                                            <!-- Comment Author -->
-                                            <div class="comment-author">
-                                                <img src="img/bg-img/31.jpg" alt="author">
-                                            </div>
-                                            <!-- Comment Meta -->
-                                            <div class="comment-meta">
-                                                <a href="#" class="post-author">Sandy Doe</a>
-                                                <a href="#" class="post-date">April 15, 2018</a>
-                                                <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel
-                                                    dolor. Nulla facilisi. Sed pellen tesque lectus et accu msan
-                                                    aliquam. Fusce lobortis cursus quam, id mattis sapien.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </li>
-
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="img/bg-img/32.jpg" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="post-author">Christian Williams</a>
-                                        <a href="#" class="post-date">April 15, 2018</a>
-                                        <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor.
-                                            Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce
-                                            lobortis cursus quam, id mattis sapien.</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
+              
 
                     <div class="post-a-comment-area section-padding-80-0">
-                        <h4>  Comment</h4>
+                        <h4> {{ $singlenews->comments()->count() }} Comments</h4>
 
-                        <!-- Reply Form -->
+                        @include('front.partials.comment_replies', ['comments' => $singlenews->comments, 'news_id' => $singlenews->id])
+                        <h3>Do you have any comment about this news?</h3>
                         <div class="contact-form-area">
                             <form action="{{ route('comment.add') }}" method="post">
                              @csrf
                                 <div class="row">                      
                                     <div class="col-12">
                                         <textarea name="comment_body" class="form-control" id="message" cols="20" rows="10"
-                                           ></textarea>
+                                            placeholder="Post Your Commner Here"></textarea>
                                         <input type="hidden" name="news_id" value="{{ $singlenews->id }}" />
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button  type="submit">Add Comment</button>
+                                        <button class="btn btn-success" type="submit">Add Comment</button>
                                     </div>
                                 </div>
                             </form>

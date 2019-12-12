@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Comment;
 class News extends Model
 {
+   // protected $fillable = ['parent_id']; 
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'categoriesnews');
